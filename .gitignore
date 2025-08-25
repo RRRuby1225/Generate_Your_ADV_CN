@@ -23,7 +23,7 @@ share/python-wheels/
 MANIFEST
 
 # Virtual Environment
-.env
+#.env
 .venv
 env/
 venv/
@@ -70,7 +70,7 @@ frontend/pnpm-debug.log*
 frontend/lerna-debug.log*
 
 # Environment variables
-frontend/.env
+#frontend/.env
 frontend/.env.local
 frontend/.env.development.local
 frontend/.env.test.local
