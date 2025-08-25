@@ -16,9 +16,10 @@
 
 ## 最终运行效果
 
-![](./resource/页面1.PNG) 
+<img width="1417" height="992" alt="页面1" src="https://github.com/user-attachments/assets/80430875-dc58-43ce-a8d0-9d4860ca42f7" />
 
-![](./resource/页面2.PNG) 
+<img width="1416" height="1178" alt="页面2" src="https://github.com/user-attachments/assets/06c9cfd3-5670-4c2d-bed2-20cab48c457b" />
+
 
 ## backend 搭建
 
@@ -37,7 +38,7 @@
     uv init .
 uv init . 会生成 pyproject.toml 和 .python-version 配置文件，可以在文件里修改要安装的 python 版本。__使用 FastAPI 你的 Python 版本必须  >3.6 ， 我使用的版本为 3.12。__  
 
-<img width="240" height="71" alt="初始化" src="https://github.com/user-attachments/assets/4d640dcd-3ba8-4521-9a2b-fc5c10203432" />
+<img width="480" height="140" alt="初始化" src="https://github.com/user-attachments/assets/4d640dcd-3ba8-4521-9a2b-fc5c10203432" />
 
 #### 2.安装依赖  
 
@@ -432,3 +433,5 @@ sequenceDiagram
     
     Note over U,Game: 整个故事流程结束
 ```
+
+
