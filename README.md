@@ -9,10 +9,10 @@
 
 本项目使用 FastAPI + React 实现了一个 AI 生成的文字冒险游戏。根据 [The Ultimate FastAPI + React Full Stack Project](https://www.youtube.com/watch?v=_1P0Uqk50Ps&list=LL&index=1&t=71s) 视频教程实现，原项目 github 地址为[Choose-Your-Own-Adventure-AI](https://github.com/techwithtim/Choose-Your-Own-Adventure-AI)，适合有一定 Python 和 JS 基础的开发者学习 FastAPI 和 React 全栈开发。  
 
-与原项目不同的地方：  
-1.对后端进行了重构，新增了 story_server.py 处理故事生成的业务逻辑、数据库操作和错误处理，使每个模块的职责更清晰。  
-2.对提示词进行一定优化，使生成的故事与选项内容更加匹配。  
-3.本地化
+__与原项目不同的地方：__  
+`1. 对后端进行了重构，新增了 story_server.py 处理故事生成的业务逻辑、数据库操作和错误处理，使每个模块的职责更清晰。`  
+`2. 对提示词进行优化，使生成的故事与选项内容更加匹配。`  
+`3. 本地化`
 
 ## 最终运行效果
 
@@ -250,33 +250,33 @@ sequenceDiagram
     
     API-->>C: 返回 job_id
     
-    API->>BT: 添加后台任务 generate_story_task()
+    API->>BT: 添加后台任务 StoryService.generate_story_task()
     deactivate API
     
     activate BT
     BT->>DB: 创建新的数据库会话
-BT->>DB: 查询job记录是否存在
-alt job不存在
-    BT-->>BT: 直接返回
-else job存在
-    BT->>DB: 更新任务状态为 processing
-end
+    BT->>DB: 查询job记录是否存在
+    alt job不存在
+        BT-->>BT: 直接返回
+    else job存在
+        BT->>DB: 更新任务状态为 processing
+    end
     
-    Note over BT: StoryGenerator.generate_story()
+    Note over BT: StoryService.create_story_from_ai()
     BT->>AI: 调用 AI 生成故事
     activate AI
-    Note over AI: ChatOpenAI.invoke()
+    Note over AI: StoryGenerator.generate_story_structure()
     AI-->>BT: 返回 JSON 格式故事数据
     deactivate AI
     
     BT->>DB: 创建 Story 记录
     
-    Note over BT: _process_story_node(root_node, is_root=True)
+    Note over BT: StoryService._process_story_node(root_node, is_root=True)
     BT->>DB: 创建根节点记录
     DB-->>BT: 返回根节点 ID
 
     loop 递归处理所有节点
-        Note over BT: _process_story_node() 递归调用
+        Note over BT: StoryService._process_story_node() 递归调用
         BT->>DB: 创建当前节点记录
         DB-->>BT: 返回节点 ID
         BT->>DB: 更新父节点的 options 数组
@@ -302,7 +302,7 @@ end
     API->>DB: 查询故事和节点数据
     DB-->>API: 返回数据
     
-    Note over API: build_complete_story_tree()
+    Note over API: StoryService.build_complete_story_tree()
     
     API-->>C: 返回完整故事数据
     deactivate API
