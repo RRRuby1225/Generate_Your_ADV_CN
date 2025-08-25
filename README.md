@@ -38,7 +38,8 @@ __与原项目不同的地方：__
     uv init .
 uv init . 会生成 pyproject.toml 和 .python-version 配置文件，可以在文件里修改要安装的 python 版本。__使用 FastAPI 你的 Python 版本必须  >3.6 ， 我使用的版本为 3.12。__  
 
-<img width="480" height="140" alt="初始化" src="https://github.com/user-attachments/assets/4d640dcd-3ba8-4521-9a2b-fc5c10203432" />
+<img width="480" height="140" alt="初始化" src="https://github.com/user-attachments/assets/8ae080f5-93ee-4b26-ab6a-667c3a0380ce" />
+
 
 #### 2.安装依赖  
 
@@ -433,5 +434,6 @@ sequenceDiagram
     
     Note over U,Game: 整个故事流程结束
 ```
+
 
 
