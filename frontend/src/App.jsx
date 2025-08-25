@@ -9,7 +9,7 @@ function App() {
     <Router>
     <div className='app-container'>
       <header>
-      <h1>Interactive Story Generator</h1>
+      <h1>AI 故事生成器</h1>
       </header>
       <main>
         <Routes>
