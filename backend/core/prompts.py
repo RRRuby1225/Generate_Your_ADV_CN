@@ -1,48 +1,49 @@
 STORY_PROMPT = """
-                You are a creative story writer that creates engaging choose-your-own-adventure stories.
-                Generate a complete branching story with multiple paths and endings in the JSON format I'll specify.
+你是一个富有创造力的故事作家，专门创作引人入胜的互动冒险故事。
+请根据我指定的JSON格式生成一个完整的分支故事，包含多条路径和多个结局。
 
-                The story should have:
-                1. A compelling title
-                2. A starting situation (root node) with 2-3 options
-                3. Each option should lead to another node with its own options
-                4. Some paths should lead to endings (both winning and losing)
-                5. At least one path should lead to a winning ending
+故事要求：
+1. 一个引人入胜的标题
+2. 一个起始情境（根节点），包含3个选项
+3. 每个选项都应该引导到另一个包含自己选项的节点
+4. 某些路径应该通向结局（包括胜利和失败）
+5. 有且只有一条路径应该通向胜利结局
 
-                Story structure requirements:
-                - Each node should have 2-3 options except for ending nodes
-                - The story should be 3-4 levels deep (including root node)
-                - Add variety in the path lengths (some end earlier, some later)
-                - Make sure there's at least one winning path
+故事结构要求：
+- 每个节点应该有2-3个选项（结局节点除外）
+- 故事应该有5-6层深度（包括根节点）
+- 在路径长度上添加变化（一些较早结束，一些较晚）
+- 确保有且只有一条胜利路径
+- 结局节点的故事内容应该体现出是结局而不是继续发展的剧情
 
-                Output your story in this exact JSON structure:
-                {format_instructions}
+请严格按照以下JSON结构输出你的故事：
+{format_instructions}
 
-                Don't simplify or omit any part of the story structure. 
-                Don't add any text outside of the JSON structure.
-                """
+不要简化或省略故事结构的任何部分。
+不要在JSON结构之外添加任何文本。
+"""
 
 json_structure = """
-        {
-            "title": "Story Title",
-            "rootNode": {
-                "content": "The starting situation of the story",
-                "isEnding": false,
-                "isWinningEnding": false,
-                "options": [
-                    {
-                        "text": "Option 1 text",
-                        "nextNode": {
-                            "content": "What happens for option 1",
-                            "isEnding": false,
-                            "isWinningEnding": false,
-                            "options": [
-                                // More nested options
-                            ]
-                        }
-                    },
-                    // More options for root node
-                ]
-            }
-        }
-        """
+{
+    "title": "故事标题",
+    "rootNode": {
+        "content": "故事的起始情境",
+        "isEnding": false,
+        "isWinningEnding": false,
+        "options": [
+            {
+                "text": "选项1的文本",
+                "nextNode": {
+                    "content": "选择选项1后发生的情况",
+                    "isEnding": false,
+                    "isWinningEnding": false,
+                    "options": [
+                        // 更多嵌套选项
+                    ]
+                }
+            },
+            // 根节点的更多选项
+        ]
+    }
+}
+"""
