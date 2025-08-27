@@ -1,18 +1,13 @@
 # FastAPI+React+OpenAI API 全栈开发
 
-✅ FastAPI  
-✅ SQLAlchemy  
-✅ React + Vite  
-✅ LangChain + OpenAI  
-⚠️ SQLite  
-⚠️ 原生CSS  
+✅ FastAPI ✅ SQLAlchemy  ✅ React + Vite  ✅ LangChain + OpenAI  ⚠️ SQLite  ⚠️ 原生CSS  
 
-本项目使用 FastAPI + React 实现了一个 AI 生成的文字冒险游戏。适合有一定 Python 和 JS 基础的开发者学习 FastAPI 和 React 全栈开发。体验地址：[AI互动故事生成器](https://0c4a38e2-d692-417e-b1e1-20668b088beb.e1-us-east-azure.choreoapps.dev/) 。
+本项目使用 FastAPI + React 实现了一个 AI 生成的文字冒险互动故事。适合有一定 Python 和 JS 基础的开发者学习 FastAPI 和 React 全栈开发。体验地址：[AI 故事生成器](https://0c4a38e2-d692-417e-b1e1-20668b088beb.e1-us-east-azure.choreoapps.dev/) 。
 
-根据 [The Ultimate FastAPI + React Full Stack Project](https://www.youtube.com/watch?v=_1P0Uqk50Ps&list=LL&index=1&t=71s) 视频教程实现，原项目 github 地址为 [Choose-Your-Own-Adventure-AI](https://github.com/techwithtim/Choose-Your-Own-Adventure-AI) 。__与原项目不同的地方：__  
+根据 YouTube [The Ultimate FastAPI + React Full Stack Project](https://www.youtube.com/watch?v=_1P0Uqk50Ps&list=LL&index=1&t=71s) 视频教程实现，原项目 github 地址为 [Choose-Your-Own-Adventure-AI](https://github.com/techwithtim/Choose-Your-Own-Adventure-AI) 。__与原项目不同的地方：__  
 
 1. 对后端进行了重构，新增了 story_server.py 处理故事生成的业务逻辑、数据库操作和错误处理，使每个模块的职责更清晰。
-2. 对前端进行优化（vibe coding）。  
+2. 对前端进行优化（vibe coding），更符合现代审美。  
 3. 使用免费的大模型 API ，地址：<https://poixe.com/products/free> ，创建自己的 API 后在 .env 文件配置。  
 4. 对提示词进行优化，使生成的故事与选项内容更加匹配。  
 5. 本地化。  
