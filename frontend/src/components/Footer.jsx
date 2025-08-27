@@ -97,7 +97,7 @@ function Footer() {
 
             {/* 版权信息 */}
             <div className="footer-bottom">
-                <p>&copy; 2024 AI 故事生成器. 用于学习目的的开源项目.</p>
+                <p>&copy; 2025 AI 故事生成器. 用于学习目的的开源项目.</p>
             </div>
         </footer>
     );
