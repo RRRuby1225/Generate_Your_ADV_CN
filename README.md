@@ -21,6 +21,7 @@
 
 ## 最终运行效果
 
+<img width="1848" height="1022" alt="页面1" src="https://github.com/user-attachments/assets/4520a44b-bbc9-422b-8ed4-4efbcb7cfe2c" />
 
 
 ## backend 搭建
@@ -435,3 +436,4 @@ sequenceDiagram
     
     Note over U,Game: 整个故事流程结束
 ```
+
