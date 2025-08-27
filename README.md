@@ -7,20 +7,20 @@
 ⚠️ SQLite  
 ⚠️ 原生CSS  
 
-本项目使用 FastAPI + React 实现了一个 AI 生成的文字冒险游戏。适合有一定 Python 和 JS 基础的开发者学习 FastAPI 和 React 全栈开发。体验地址：[AI互动故事生成器](https://0c4a38e2-d692-417e-b1e1-20668b088beb.e1-us-east-azure.choreoapps.dev/) 。    
+本项目使用 FastAPI + React 实现了一个 AI 生成的文字冒险游戏。适合有一定 Python 和 JS 基础的开发者学习 FastAPI 和 React 全栈开发。体验地址：[AI互动故事生成器](https://0c4a38e2-d692-417e-b1e1-20668b088beb.e1-us-east-azure.choreoapps.dev/) 。
 
 根据 [The Ultimate FastAPI + React Full Stack Project](https://www.youtube.com/watch?v=_1P0Uqk50Ps&list=LL&index=1&t=71s) 视频教程实现，原项目 github 地址为 [Choose-Your-Own-Adventure-AI](https://github.com/techwithtim/Choose-Your-Own-Adventure-AI) 。__与原项目不同的地方：__  
-`1. 对后端进行了重构，新增了 story_server.py 处理故事生成的业务逻辑、数据库操作和错误处理，使每个模块的职责更清晰。`  
-`2. 对提示词进行优化，使生成的故事与选项内容更加匹配。`  
-`3. 本地化`  
-`4. 没有连接远程 PostgreSQL 数据库，因为 Choreo 已经不再免费提供数据库。`  
-`5. 对配置部分进行了处理，可以在本地运行，也可以直接部署到 Choreo 。`  
+
+1. 对后端进行了重构，新增了 story_server.py 处理故事生成的业务逻辑、数据库操作和错误处理，使每个模块的职责更清晰。
+2. 对前端进行优化（vibe coding）。  
+3. 使用免费的大模型 API ，地址：<https://poixe.com/products/free> ，创建自己的 API 后在 .env 文件配置。  
+4. 对提示词进行优化，使生成的故事与选项内容更加匹配。  
+5. 本地化。  
+6. 没有连接远程 PostgreSQL 数据库，因为 Choreo 已经不再免费提供数据库。
+7. 对配置部分进行了处理，可以在本地运行，也可以直接部署到 Choreo 。  
 
 ## 最终运行效果
 
-<img width="1417" height="992" alt="页面1" src="https://github.com/user-attachments/assets/80430875-dc58-43ce-a8d0-9d4860ca42f7" />
-
-<img width="1416" height="1178" alt="页面2" src="https://github.com/user-attachments/assets/06c9cfd3-5670-4c2d-bed2-20cab48c457b" />
 
 
 ## backend 搭建
@@ -38,10 +38,9 @@
 安装完成后输入
 
     uv init .
-uv init . 会生成 pyproject.toml 和 .python-version 配置文件，可以在文件里修改要安装的 python 版本。__使用 FastAPI 你的 Python 版本必须  >3.6 ， 我使用的版本为 3.12。__  
+uv init . 会生成 pyproject.toml 和 .python-version 配置文件，可以在文件里修改要安装的 python 版本。__我的版本为 3.12。__  
 
 <img width="480" height="140" alt="初始化" src="https://github.com/user-attachments/assets/8ae080f5-93ee-4b26-ab6a-667c3a0380ce" />
-
 
 #### 2.安装依赖  
 
@@ -436,6 +435,3 @@ sequenceDiagram
     
     Note over U,Game: 整个故事流程结束
 ```
-
-
-

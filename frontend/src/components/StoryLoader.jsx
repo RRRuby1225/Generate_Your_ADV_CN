@@ -48,6 +48,12 @@ function StoryLoader() {
     if (error) {
         return (
             <div className="story-loader">
+                {/* 添加导航栏 */}
+                <div className="story-nav">
+                    <button onClick={createNewStory} className="home-btn">
+                        ← 返回首页
+                    </button>
+                </div>
                 <div className="error-message">
                     <h2>故事未找到</h2>
                     <p>{error}</p>
@@ -60,6 +66,12 @@ function StoryLoader() {
     if (story) {
         return (
             <div className="story-loader">
+                {/* 添加导航栏 */}
+                <div className="story-nav">
+                    <button onClick={createNewStory} className="home-btn">
+                        ← 返回首页
+                    </button>
+                </div>
                 <StoryGame story={story} onNewStory={createNewStory} />
             </div>
         )

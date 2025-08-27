@@ -1,12 +1,17 @@
+/* 导入现代字体 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: #333;
-  background-color: #f8f9fa;
+  /* 强制使用深色主题，参考 Augment Code 的设计风格 */
+  color-scheme: dark;
+  color: #e2e8f0;
+  /* 修改背景渐变：从上到下，黑色到浅青色，类似 Augment Code */
+  background: linear-gradient(180deg, #000000 0%, #0f172a 40%, #164e63 100%);
+  min-height: 100vh;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,34 +29,30 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  /* 确保背景覆盖整个页面 */
+  background: inherit;
+  /* 添加 flexbox 布局，确保 Footer 固定在底部 */
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
   font-size: 2.5rem;
   line-height: 1.2;
+  font-weight: 700; /* 增加字体粗细，更现代 */
 }
 
 h2 {
   font-size: 1.8rem;
   line-height: 1.3;
+  font-weight: 600;
 }
 
 h3 {
   font-size: 1.3rem;
   line-height: 1.4;
+  font-weight: 500;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #f8f9fa;
-    background-color: #1a1a2e;
-  }
+/* 移除原有的媒体查询，因为我们现在强制使用深色主题 */
 
-  button {
-    background-color: #3f72af;
-  }
-
-  button:hover {
-    background-color: #1a6fb0;
-  }
-}

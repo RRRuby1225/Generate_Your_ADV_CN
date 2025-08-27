@@ -1,14 +1,34 @@
+/* 深色主题色彩方案，参考 Augment Code 的现代设计 */
 :root {
-  --primary-color: #4a6fa5;
-  --secondary-color: #166d89;
-  --accent-color: #48cae4;
-  --text-color: #333;
-  --background-color: #f8f9fa;
-  --card-background: #ffffff;
-  --success-color: #4caf50;
-  --error-color: #f44336;
-  --border-radius: 8px;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* 主色调 - 保持蓝色系但适配深色主题 */
+  --primary-color: #3b82f6;
+  --secondary-color: #1d4ed8;
+  --accent-color: #06b6d4;
+  
+  /* 深色主题文字颜色 */
+  --text-color: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  /* 深色主题背景色 */
+  --background-color: transparent; /* 使用 index.css 中的渐变背景 */
+  --card-background: rgba(30, 41, 59, 0.8); /* 半透明卡片背景，玻璃态效果 */
+  --card-border: rgba(148, 163, 184, 0.2);
+  
+  /* 状态颜色 */
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
+  
+  /* 设计系统 */
+  --border-radius: 12px; /* 增加圆角，更现代 */
+  --border-radius-lg: 16px;
+  --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1); /* 增强阴影效果 */
+  --box-shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.4), 0 8px 16px -4px rgba(0, 0, 0, 0.2);
+  
+  /* 动画 */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -18,83 +38,159 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: var(--text-color);
-  background-color: var(--background-color);
+  background: inherit; /* 继承 index.css 的渐变背景 */
 }
 
+/* 应用包装器 - 使用 flexbox 确保 Footer 固定在底部 */
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 主容器 - 占据剩余空间 */
 .app-container {
-  max-width: 800px;
+  max-width: 900px; /* 稍微增加宽度 */
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 3rem 1.5rem; /* 增加内边距 */
+  flex: 1; /* 占据剩余空间，将 Footer 推到底部 */
 }
 
+/* 头部样式 - 参考 Augment Code 的大标题设计 */
 header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem; /* 增加间距 */
 }
 
 header h1 {
-  color: var(--primary-color);
+  color: var(--text-color);
   margin-bottom: 0.5rem;
+  font-size: 3rem; /* 增大标题字体 */
+  font-weight: 700;
+  /* 添加文字渐变效果，类似 Augment Code */
+  background: linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 footer {
   text-align: center;
-  margin-top: 3rem;
-  padding-top: 1rem;
-  color: #666;
-  border-top: 1px solid #eee;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--card-border);
 }
 
+/* 现代化按钮设计 - 参考 Augment Code 的彩色边框按钮 */
 button {
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  background-color: var(--primary-color);
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   color: white;
-  border: none;
+  border: 2px solid transparent;
   border-radius: var(--border-radius);
   font-size: 1rem;
-  transition: background-color 0.3s;
+  font-weight: 500;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
+/* 按钮悬停效果 - 添加彩色边框和光效 */
 button:hover {
-  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-lg);
+  border-color: var(--accent-color);
 }
 
-/* Theme Input */
+button:active {
+  transform: translateY(0);
+}
+
+/* 按钮内部光效 */
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+/* 主题输入容器 - 玻璃态卡片设计 */
 .theme-input-container {
-  background-color: var(--card-background);
-  padding: 2rem;
-  border-radius: var(--border-radius);
+  background: var(--card-background);
+  backdrop-filter: blur(10px); /* 玻璃态效果 */
+  border: 1px solid var(--card-border);
+  padding: 2.5rem;
+  border-radius: var(--border-radius-lg);
   box-shadow: var(--box-shadow);
   text-align: center;
+  position: relative;
+}
+
+/* 卡片内部光效 */
+.theme-input-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+  opacity: 0.5;
 }
 
 .theme-input-container h2 {
-  color: var(--primary-color);
+  color: var(--text-color);
   margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 .theme-input-container p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
 }
 
+/* 输入框组 */
 .input-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .input-group input {
   width: 100%;
-  padding: 0.75rem;
+  padding: 1rem;
   font-size: 1rem;
-  border: 1px solid #ddd;
+  background: rgba(15, 23, 42, 0.5);
+  border: 2px solid var(--card-border);
   border-radius: var(--border-radius);
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .input-group input.error {
   border-color: var(--error-color);
+}
+
+.input-group input::placeholder {
+  color: var(--text-muted);
 }
 
 .error-text {
@@ -104,17 +200,22 @@ button:hover {
   text-align: left;
 }
 
+/* 生成按钮 - 特殊样式 */
 .generate-btn {
-  background-color: var(--accent-color);
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: bold;
+  background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
 }
 
 .generate-btn:hover {
-  background-color: var(--secondary-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  transform: translateY(-3px);
 }
 
+/* 示例标签 */
 .examples {
   margin-top: 2rem;
   text-align: left;
@@ -122,8 +223,9 @@ button:hover {
 
 .examples h3 {
   font-size: 1rem;
-  margin-bottom: 0.5rem;
-  color: #666;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .examples ul {
@@ -132,43 +234,71 @@ button:hover {
 
 .examples li {
   display: inline-block;
-  background-color: #f0f0f0;
-  padding: 0.25rem 0.5rem;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: var(--accent-color);
+  padding: 0.5rem 1rem;
   margin: 0.25rem;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   font-size: 0.875rem;
+  transition: var(--transition-fast);
+  cursor: pointer;
 }
 
-/* Loading */
+.examples li:hover {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-1px);
+}
+
+/* 加载容器 */
 .loading-container {
-  background-color: var(--card-background);
-  padding: 2rem;
-  border-radius: var(--border-radius);
+  background: var(--card-background);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  padding: 3rem;
+  border-radius: var(--border-radius-lg);
   box-shadow: var(--box-shadow);
   text-align: center;
-  min-height: 300px;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
 .loading-container h2 {
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-weight: 600;
 }
 
 .loading-animation {
   margin: 2rem auto;
 }
 
+/* 现代化加载动画 */
 .spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid rgba(0, 0, 0, 0.1);
-  border-top-color: var(--accent-color);
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(59, 130, 246, 0.1);
+  border-top-color: var(--primary-color);
   border-radius: 50%;
   margin: 0 auto;
   animation: spin 1s linear infinite;
+  position: relative;
+}
+
+.spinner::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 4px solid transparent;
+  border-top-color: var(--accent-color);
+  border-radius: 50%;
+  animation: spin 2s linear infinite reverse;
 }
 
 @keyframes spin {
@@ -177,13 +307,16 @@ button:hover {
 
 .loading-info {
   margin-top: 1rem;
-  color: #666;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
 }
 
-/* Story Container and Actions */
+/* 故事容器和操作 */
 .story-container {
-  background-color: var(--card-background);
-  border-radius: var(--border-radius);
+  background: var(--card-background);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
   box-shadow: var(--box-shadow);
   overflow: hidden;
 }
@@ -191,73 +324,83 @@ button:hover {
 .story-actions {
   display: flex;
   gap: 1rem;
-  padding: 1rem 2rem;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
+  padding: 1.5rem 2rem;
+  background: rgba(15, 23, 42, 0.3);
+  border-bottom: 1px solid var(--card-border);
   justify-content: flex-end;
 }
 
 .share-btn, .view-btn {
-  background-color: var(--accent-color);
+  background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
   color: white;
-  border: none;
-  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  padding: 0.75rem 1.25rem;
   border-radius: var(--border-radius);
   font-size: 0.9rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: var(--transition);
 }
 
 .share-btn:hover, .view-btn:hover {
-  background-color: var(--secondary-color);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
 }
 
-/* Story Loader */
+/* 故事加载器 */
 .story-loader {
-  background-color: var(--card-background);
-  border-radius: var(--border-radius);
+  background: var(--card-background);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
   box-shadow: var(--box-shadow);
   overflow: hidden;
 }
 
 .story-nav {
-  padding: 1rem 2rem;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
+  padding: 1.5rem 2rem;
+  background: rgba(15, 23, 42, 0.3);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .home-btn {
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
+  background: rgba(100, 116, 139, 0.2);
+  color: var(--text-secondary);
+  border: 2px solid var(--card-border);
+  padding: 0.75rem 1.25rem;
   border-radius: var(--border-radius);
   font-size: 0.9rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: var(--transition);
 }
 
 .home-btn:hover {
-  background-color: #5a6268;
+  background: rgba(100, 116, 139, 0.3);
+  border-color: var(--text-secondary);
+  color: var(--text-color);
 }
 
-/* Story Game */
+/* 故事游戏 */
 .story-game {
-  background-color: var(--card-background);
-  padding: 2rem;
-  border-radius: var(--border-radius);
+  background: var(--card-background);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  padding: 2.5rem;
+  border-radius: var(--border-radius-lg);
   box-shadow: var(--box-shadow);
 }
 
 .story-header {
   text-align: center;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #eee;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .story-header h2 {
-  color: var(--primary-color);
+  color: var(--text-color);
+  font-weight: 600;
 }
 
 .story-content {
@@ -265,14 +408,16 @@ button:hover {
 }
 
 .story-node p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: var(--text-color);
 }
 
 .story-options h3 {
-  margin-bottom: 1rem;
-  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  font-weight: 600;
 }
 
 .options-list {
@@ -281,53 +426,70 @@ button:hover {
   gap: 1rem;
 }
 
+/* 选项按钮 - 现代化设计 */
 .option-btn {
   text-align: left;
-  padding: 1rem;
-  background-color: #f0f7ff;
+  padding: 1.5rem;
+  background: rgba(59, 130, 246, 0.05);
   color: var(--text-color);
-  border: 1px solid #d0e0f7;
-  transition: all 0.3s;
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .option-btn:hover {
-  background-color: #e0f0ff;
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--primary-color);
   transform: translateY(-2px);
+  box-shadow: var(--box-shadow);
 }
 
+/* 故事结局 */
 .story-ending {
   text-align: center;
   margin-top: 2rem;
+  padding: 2rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--border-radius);
 }
 
 .story-ending h3 {
-  color: var(--primary-color);
+  color: var(--success-color);
   margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 .restart-btn {
-  background-color: var(--accent-color);
-  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+  padding: 1rem 2rem;
+  font-weight: 600;
 }
 
 .restart-btn:hover {
-  background-color: var(--secondary-color);
+  transform: translateY(-3px);
 }
 
 .winning-message {
   color: var(--success-color);
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 1.5rem;
+  font-size: 1.1rem;
 }
 
 .ending-message {
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
+  font-size: 1.1rem;
 }
 
 .new-story-btn {
-  background-color: var(--accent-color);
-  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+  padding: 1rem 2rem;
+  font-weight: 600;
+  margin-left: 1rem;
 }
 
 .story-controls {
@@ -335,24 +497,28 @@ button:hover {
   justify-content: center;
   gap: 1rem;
   margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--card-border);
 }
 
 .reset-btn {
-  background-color: #f0f0f0;
-  color: #666;
+  background: rgba(100, 116, 139, 0.2);
+  color: var(--text-secondary);
+  border: 2px solid var(--card-border);
 }
 
 .reset-btn:hover {
-  background-color: #e0e0e0;
+  background: rgba(100, 116, 139, 0.3);
+  color: var(--text-color);
+  border-color: var(--text-secondary);
 }
 
-/* Error Message */
+/* 错误消息 */
 .error-message {
-  background-color: #ffebee;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
   color: var(--error-color);
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: var(--border-radius);
   text-align: center;
   margin-bottom: 2rem;
@@ -360,12 +526,286 @@ button:hover {
 
 .error-message p {
   margin-bottom: 1rem;
+  font-size: 1.1rem;
 }
 
 .error-message button {
-  background-color: var(--error-color);
+  background: linear-gradient(135deg, var(--error-color), #dc2626);
 }
 
 .error-message button:hover {
-  background-color: #d32f2f;
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
 }
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 2rem 1rem;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .theme-input-container,
+  .loading-container,
+  .story-game {
+    padding: 2rem;
+  }
+  
+  .story-controls {
+    flex-direction: column;
+  }
+  
+  .new-story-btn {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+}
+
+
+
+/* Footer 样式 - 修复布局问题，确保正确的全宽显示和固定在底部 */
+.app-footer {
+  width: 100%; /* 全宽 */
+  margin: 0; /* 移除所有边距 */
+  padding: 3rem 0 1rem;
+  background: #000000; /* 纯黑色背景，与渐变形成对比 */
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  box-sizing: border-box; /* 确保 padding 不会导致溢出 */
+  /* 确保 Footer 在 flexbox 布局中正确显示 */
+  flex-shrink: 0; /* 防止 Footer 被压缩 */
+  margin-left: calc(-50vw + 50%); /* 突破容器限制，实现真正的全宽 */
+  margin-right: calc(-50vw + 50%);
+}
+
+.footer-content {
+  width: 100%; /* 改为全宽，不再限制最大宽度 */
+  margin: 0; /* 移除居中 margin */
+  padding: 0 2rem; /* 增加左右内边距，确保内容不贴边 */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+  box-sizing: border-box; /* 确保 padding 计算正确 */
+}
+
+.footer-section h3 {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* 技术栈链接样式 - 参考 Augment Code 的彩色标签设计 */
+.tech-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--border-radius);
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box; /* 确保边框计算正确 */
+}
+
+.tech-link:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+  color: var(--text-color);
+}
+
+/* 为不同的技术添加不同的颜色主题 */
+.tech-link:nth-child(1) { /* FastAPI */
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.tech-link:nth-child(1):hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+}
+
+.tech-link:nth-child(2) { /* SQLAlchemy */
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.tech-link:nth-child(2):hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+}
+
+.tech-link:nth-child(3) { /* React */
+  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(6, 182, 212, 0.3);
+  color: #06b6d4;
+}
+
+.tech-link:nth-child(3):hover {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: #06b6d4;
+}
+
+.tech-link:nth-child(4) { /* Vite */
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: #8b5cf6;
+}
+
+.tech-link:nth-child(4):hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: #8b5cf6;
+}
+
+.tech-link:nth-child(5) { /* LangChain */
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #f59e0b;
+}
+
+.tech-link:nth-child(5):hover {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: #f59e0b;
+}
+
+.tech-link:nth-child(6) { /* OpenAI */
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.tech-link:nth-child(6):hover {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+}
+
+.tech-link:nth-child(7) { /* SQLite */
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.3);
+  color: #a855f7;
+}
+
+.tech-link:nth-child(7):hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: #a855f7;
+}
+
+/* 项目链接样式 */
+.project-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.project-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+  box-sizing: border-box; /* 确保边框计算正确 */
+}
+
+.project-link:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow);
+}
+
+.link-icon {
+  font-size: 1.2rem;
+}
+
+/* 项目描述 */
+.footer-description p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* 底部版权信息 */
+.footer-bottom {
+  width: 100%; /* 改为全宽，不再限制最大宽度 */
+  margin: 0; /* 移除居中 margin */
+  padding: 2rem 2rem 0; /* 增加左右内边距，与 footer-content 一致 */
+  text-align: center;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  box-sizing: border-box; /* 确保 padding 计算正确 */
+}
+
+.footer-bottom p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* 响应式设计 - 增强自适应能力 */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr; /* 移动端单列布局 */
+    gap: 2rem;
+    padding: 0 1.5rem; /* 移动端减少内边距 */
+  }
+  
+  .tech-links {
+    justify-content: center; /* 移动端居中显示 */
+  }
+  
+  .app-footer {
+    padding: 2rem 0 1rem;
+  }
+  
+  .footer-bottom {
+    padding: 2rem 1.5rem 0; /* 移动端减少内边距，与 footer-content 一致 */
+  }
+}
+
+/* 超小屏幕适配 */
+@media (max-width: 480px) {
+  .footer-content {
+    padding: 0 1rem; /* 超小屏幕进一步减少内边距 */
+    gap: 1.5rem;
+  }
+  
+  .tech-link {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .footer-bottom {
+    padding: 1.5rem 1rem 0; /* 超小屏幕进一步减少内边距 */
+  }
+}
+
+/* 确保在所有屏幕尺寸下都不会出现水平滚动条 */
+@media (min-width: 1200px) {
+  .footer-content {
+    padding: 0 3rem; /* 大屏幕增加内边距，保持美观 */
+  }
+  
+  .footer-bottom {
+    padding: 2rem 3rem 0; /* 大屏幕增加内边距，与 footer-content 一致 */
+  }
+}
+

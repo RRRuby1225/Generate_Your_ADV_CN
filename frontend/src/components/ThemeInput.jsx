@@ -15,10 +15,16 @@ function ThemeInput({onSubmit}) {
         onSubmit(theme);
     }
 
+    // 添加示例主题点击功能
+    const handleExampleClick = (exampleTheme) => {
+        setTheme(exampleTheme);
+        setError(""); // 清除错误信息
+    }
+
     return (
         <div className="theme-input-container">
             <h2>创作你的冒险故事</h2>
-            <p>为你的互动故事输入一个主题</p>
+            <p>为你的互动故事输入一个主题，AI将为你生成独特的分支剧情</p>
 
             <form onSubmit={handleSubmit}>
                 <div className="input-group">
@@ -35,6 +41,19 @@ function ThemeInput({onSubmit}) {
                     生成故事
                 </button>
             </form>
+
+            {/* 添加示例主题标签 */}
+            <div className="examples">
+                <h3>热门主题：</h3>
+                <ul>
+                    <li onClick={() => handleExampleClick("神秘的古堡探险")}>神秘的古堡探险</li>
+                    <li onClick={() => handleExampleClick("太空站危机")}>太空站危机</li>
+                    <li onClick={() => handleExampleClick("魔法学院")}>魔法学院</li>
+                    <li onClick={() => handleExampleClick("海盗寻宝")}>海盗寻宝</li>
+                    <li onClick={() => handleExampleClick("赛博朋克都市")}>赛博朋克都市</li>
+                    <li onClick={() => handleExampleClick("末日求生")}>末日求生</li>
+                </ul>
+            </div>
         </div>
     )
 }
